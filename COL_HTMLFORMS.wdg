@@ -1,0 +1,87 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : COL_HTMLFORMS
+ major_version : 28
+ minor_version : 0
+ type : 7
+ description : ""
+ subtype : 0
+procedure_set :
+ identifier : 0x1faaa62e0007ff32
+ internal_properties : CAAAAAgAAABGLu41kG7fjQV3iS4F72qmnKaNh5694reolNKIW0iw
+ code_elements :
+  type_code : 31
+  p_codes :
+   -
+     code : |1+
+      
+      __Cache is ASSOCIATIVE ARRAY of htmlDocument
+     type : 720896
+  procedures :
+   -
+     name : HTMLSearchForm
+     internal_properties : CAAAAAgAAADuX8EKt2L2BSJ0ddzbzf9o8KfyvwJBpfT1OcQoPE0ohep1tXuLXW0s9SBVXWR87i8InbFSKnooj848Qb2sr44BnFp6w90z4oUCxXNAgF80SdabEinu+c6j4Ym+LXDPHNteI7UYnzS/IKFiytE1
+     procedure_id : 2281818907780586294
+     type_code : 15
+     code : |1-
+      // Summary: Returns the list of forms
+      // Syntax:
+      //[ <Result> = ] HTMLSearchForm (<HTMLControl> is Control)
+      //
+      // Parameters:
+      //	HTMLControl (Control): HTML control
+      // Return value:
+      // 	array: List of forms
+      //
+      procedure HTMLSearchForm( HTMLControl is Control ) : array of htmlNode
+      
+      // Retrieve the displayed HTML document
+      htmlDoc		is a htmlDocument		<- HTMLControl..Document
+      
+      // Retrieve the list of forms
+      arrForms	is array of htmlNode	= HTMLFindElementByTag( htmlDoc.html.body, "form" )
+      
+      return arrForms
+     type : 458752
+   -
+     name : HTMLListControlsForm
+     internal_properties : CAAAAAgAAACM14BE28anHJm0gd0LUTnn5bc6fZiUWbHrYs64PLDaclcy+iUpHQs856HNNzP2dEIMFJNParmejcg9fgpQcas1fmuHNyV85/z2nPi9PS+pnwCAPW/WLIAKvDzuWaLyuocc28R3289fN704voEiVW/OHMPhM2ArTRE+7pS8iyW1G5ac
+     procedure_id : 2281821587840278507
+     type_code : 15
+     code : |1-
+      // Summary: Returns the list of form controls
+      // Syntax:
+      //[ <Result> = ] HTMLListControlsForm (<HTMLControl> is control, <htmlForm> is htmlNode)
+      //
+      // Parameters:
+      //	HTMLControl (Control): HTML control
+      //	htmlForm (htmlNode): Form name
+      // Return value:
+      // array: List of form controls 
+      //
+      procedure HTMLListControlsForm( HTMLControl is Control, htmlForm is a htmlNode ) : array of htmlNode
+      
+      htmlDoc		is a htmlDocument		<- HTMLControl..Document
+      
+      // Retrieve list of form controls in the specified form
+      arrControls	is array of htmlNode	= HTMLFindElementByTag( htmlForm, "input" )
+      arrControls.Add( HTMLFindElementByTag( htmlForm, "textarea" ) )
+      arrControls.Add( HTMLFindElementByTag( htmlForm, "select" ) )
+      
+      // Delete input type="image"
+      arrControls = arrControls.Filter( htmControl => htmControl:type..Value <> "image" )
+      
+      return arrControls	
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+  original_name : COL_SansNom1
+resources :
+ string_res :
+  identifier : 0x1faaa62a0005f0ea
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ
